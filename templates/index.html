@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Animated Birds</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   
+    
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="#section2">Section 2</a></li>
+            <li><a href="#section3">Section 3</a></li>
+            <li><a href="#section4">Section 4</a></li>
+        </ul>
+    </nav>
+    <div id="section1" class="section">
+        <div class="container">
+            <h1> Animated Birds</h1>
+            
+            <div class="bird-container bird-container--one">
+                <div class="bird bird--one"></div>
+            </div>
+            
+            <div class="bird-container bird-container--two">
+                <div class="bird bird--two"></div>
+            </div>
+            
+            <div class="bird-container bird-container--three">
+                <div class="bird bird--three"></div>
+            </div>
+            
+            <div class="bird-container bird-container--four">
+                <div class="bird bird--four"></div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="section2" class="section">
+        <div class="section2">
+            <!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+	<meta charset="UTF-8"> 
+	<meta name="viewport" content="width=device-width, 
+								initial-scale=1.0"> 
+	<title>Document</title> 
+	<link rel="stylesheet" href="/style.css"> 
+	<script src="/script.js" defer></script> 
+	<link rel="stylesheet" href= 
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> 
+</head> 
+
+<body> 
+
+	<div class="wrapper"> 
+		<i id="left" class="fa-solid fas fa-angle-left"></i> 
+		<ul class="carousel"> 
+			<li class="card"> 
+				<div class="img"><img src= 
+"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSOs4Qq9oNeqk1AhQogMD8m7CwuVYKQM4y6iau_OVu0EUqGHT43PNjioGHq7NiD"
+									alt="" draggable="false"> </div> 
+			</li> 
+			<li class="card"> 
+				<div class="img"><img src= 
+"https://bubobirding.com/wp-content/uploads/2019/11/Yellow-throated-Bulbul_20191027_1110503.jpg"
+									alt="" draggable="false"> </div> 
+			</li> 
+			<li class="card"> 
+				<div class="img"><img src= 
+"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTXUVVMGEi9shdZNUVw8XJyc4z8cFLbmK8LUgYN95pFU8pHPkMz8P1EL473QoUX"
+									alt="" draggable="false"> </div> 
+			</li>  
+			<li class="card"> 
+				<div class="img"><img src= 
+                    "https://bubobirding.com/wp-content/uploads/2020/01/White-bellied-Sholakili_20200110_1120569.jpg"
+									alt="" draggable="false"> </div> 
+			</li> 
+			
+		</ul> 
+		<i id="right" class="fa-solid fas fa-angle-right"></i> 
+	</div> 
+
+</body> 
+
+</html>
+
+            <!-- Content for section 2 goes here -->
+            <h2>Section 2</h2>
+            <p>This is the content for section 2.</p>
+        </div>
+        <!-- <div class="section-title">Section 2</div> -->
+    </div>
+    <div id="section3" class="section">
+        <div class="section3">
+            
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div class="input-file">
+                    <label for="audioFile">Choose Audio File</label>
+                    <input type="file" id="audioFile" name="audioFile" accept="audio/*">
+                </div>
+                
+                <div class="input-submit">
+                    <input type="submit" value="Upload">
+                </div>
+            </form>
+            
+            <div id="outputImages">
+                <img src="{{ outputs.image_path }}"alt="tt" >
+            </div>
+            
+    
+        </div>
+        
+    </div>
+    <div id="section4" class="section">
+        <div class="section4">
+            <!-- Content for section 4 goes here -->
+            <h2>Section 4</h2>
+            <p>This is the content for section 4.</p>
+        </div>
+      
+    </div>
+    {% if outputs %}
+    <!-- JavaScript to scroll to section -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var scrollToSection = 3 ;
+            function scrollToSectionFunction(sectionNumber) {
+                var section = document.getElementById('section' + sectionNumber);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            scrollToSectionFunction(scrollToSection);
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() { 
+	const carousel = document.querySelector(".carousel"); 
+	const arrowBtns = document.querySelectorAll(".wrapper i"); 
+	const wrapper = document.querySelector(".wrapper"); 
+
+	const firstCard = carousel.querySelector(".card"); 
+	const firstCardWidth = firstCard.offsetWidth; 
+
+	let isDragging = false, 
+		startX, 
+		startScrollLeft, 
+		timeoutId; 
+
+	const dragStart = (e) => { 
+		isDragging = true; 
+		carousel.classList.add("dragging"); 
+		startX = e.pageX; 
+		startScrollLeft = carousel.scrollLeft; 
+	}; 
+
+	const dragging = (e) => { 
+		if (!isDragging) return; 
+	
+		// Calculate the new scroll position 
+		const newScrollLeft = startScrollLeft - (e.pageX - startX); 
+	
+		// Check if the new scroll position exceeds 
+		// the carousel boundaries 
+		if (newScrollLeft <= 0 || newScrollLeft >= 
+			carousel.scrollWidth - carousel.offsetWidth) { 
+			
+			// If so, prevent further dragging 
+			isDragging = false; 
+			return; 
+		} 
+	
+		// Otherwise, update the scroll position of the carousel 
+		carousel.scrollLeft = newScrollLeft; 
+	}; 
+
+	const dragStop = () => { 
+		isDragging = false; 
+		carousel.classList.remove("dragging"); 
+	}; 
+
+	const autoPlay = () => { 
+	
+		// Return if window is smaller than 800 
+		if (window.innerWidth < 800) return; 
+		
+		// Calculate the total width of all cards 
+		const totalCardWidth = carousel.scrollWidth; 
+		
+		// Calculate the maximum scroll position 
+		const maxScrollLeft = totalCardWidth - carousel.offsetWidth; 
+		
+		// If the carousel is at the end, stop autoplay 
+		if (carousel.scrollLeft >= maxScrollLeft) return; 
+		
+		// Autoplay the carousel after every 2500ms 
+		timeoutId = setTimeout(() => 
+			carousel.scrollLeft += firstCardWidth, 2500); 
+	}; 
+
+	carousel.addEventListener("mousedown", dragStart); 
+	carousel.addEventListener("mousemove", dragging); 
+	document.addEventListener("mouseup", dragStop); 
+	wrapper.addEventListener("mouseenter", () => 
+		clearTimeout(timeoutId)); 
+	wrapper.addEventListener("mouseleave", autoPlay); 
+
+	// Add event listeners for the arrow buttons to 
+	// scroll the carousel left and right 
+	arrowBtns.forEach(btn => { 
+		btn.addEventListener("click", () => { 
+			carousel.scrollLeft += btn.id === "left" ? 
+				-firstCardWidth : firstCardWidth; 
+		}); 
+	}); 
+}); 
+
+    </script>
+    {% endif %}
+    
+</body>
+</html>
+
+
+
